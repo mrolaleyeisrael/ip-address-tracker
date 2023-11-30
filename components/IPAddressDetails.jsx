@@ -15,7 +15,7 @@ const IPAddressDetails = () => {
         </div>
 
         <div className='  w-full '  >
-          <div className=' w-full  flex items-center'>
+          <div className=' w-full  border rounded-xl flex items-center'>
             <input type="text" placeholder='Search for any IP address or domain...' className=' py-4 pl-4 rounded-l-xl grow outline-none' />
             <button className=' bg-black text-white py-4 px-4 rounded-r-xl grow-0 shrink-0 '>
               <Image src={'/../icon-arrow.svg'} alt='Search Icon' className=' h-full  ' width={20} height={20} />
