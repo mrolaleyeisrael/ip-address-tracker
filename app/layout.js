@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
   const getMyLocation = () => {
     navigator.geolocation.getCurrentPosition(function (pos) {
       console.log(pos)
-      setCoord([pos.coords.latitude, pos.coords.longitude]);
+      setCoord({ lat: pos.coords.latitude, lng: pos.coords.longitude });
     })
   }
 

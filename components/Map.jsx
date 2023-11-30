@@ -1,50 +1,74 @@
 'use client'
 import React, { useContext } from 'react'
+import { Grid } from 'react-loader-spinner'
 
-import L from 'leaflet'
-import MarkerIcon from '../node_modules/leaflet/dist/images/marker-icon.png'
-import MarkerShadow from '../node_modules/leaflet/dist/images/marker-shadow.png'
-import 'leaflet/dist/leaflet.css'
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+
+
 import { useState } from 'react'
 import { UserLocation } from '@/context/UserLocationContext'
+
+
+import { GoogleMap, LoadScript, MarkerF } from '@react-google-maps/api';
+
+
+const containerStyle = {
+  width: '100vw',
+  height: '80vh',
+};
+
+const center = {
+  lat: 7.50634,
+  lng: 4.539086,
+};
 
 const Map = () => {
 
   const { coord } = useContext(UserLocation)
   console.log(coord)
 
+
+  const renderMap = () => {
+    return (
+      <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY} mapIds={['24f7ccecda4d78e7']}>
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          options={{ mapId: '24f7ccecda4d78e7', gestureHandling: 'greedy' }} center={coord} zoom={15} 
+        >
+          <MarkerF
+            key={coord.lat}
+            position={coord}
+            icon={{
+              url: '/icon-location.svg',
+              scaledSize: {
+                width: 30,
+                height: 40,
+              },
+            }}
+          />
+        </GoogleMap>
+      </LoadScript>
+    );
+  };
+
   return (
     <div className=' h-full '>
       {coord ?
 
-        (<MapContainer style={{
-          height: '100vh',
-          width: '100vw'
-        }} center={coord} zoom={13} scrollWheelZoom={false} className=' absolute z-10' >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
+        (
+          renderMap()
 
-          <Marker icon={
-            new L.Icon({
-              iconUrl: MarkerIcon.src,
-              iconRetinaUrl: MarkerIcon.src,
-              iconSize: [25, 41],
-              iconAnchor: [12.5, 41],
-              popupAnchor: [0, -41],
-              shadowUrl: MarkerShadow.src,
-              shadowSize: [41, 41],
-            })
-          } position={coord}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-          </Marker>
-        </MapContainer>) : (
-          <div className=' h-full justify-center items-center text-2xl ' >
-            <p  >Loading...</p>
+        ) : (
+          <div className=' flex h-[80vh] justify-center items-center text-2xl ' >
+            <Grid
+              height="80"
+              width="80"
+              color="#ba84d7"
+              ariaLabel="grid-loading"
+              radius="12.5"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
+            />
           </div>)
       }
 
