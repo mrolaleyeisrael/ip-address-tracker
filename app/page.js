@@ -10,11 +10,11 @@ export default function Home() {
 
   return (
     <div className=' h-screen '>
-      <div className=' h-[20vh] md:h-[20vh] bg-white z-10 '>
+      <div className='  h-[30vh] md:h-[30vh] bg-white z-10 '>
         <IPAddressDetails />
       </div>
 
-      <div className=' -z-20 h-[80vh] md:h-[80vh] '>
+      <div className=' -z-20 h-[70vh] md:h-[70vh] '>
         <Map />
       </div>
     </div>

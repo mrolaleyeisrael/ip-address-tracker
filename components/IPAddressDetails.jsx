@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 const IPAddressDetails = () => {
   return (
-    <div className=' relative z-50 md:-mb-40  '>
+    <div className=' relative h-full z-50 md:-mb-40  '>
 
       <Image src={'/../bgmobile.png'} alt='Background Image' width={1000} height={500} className=' absolute  object-cover h-full w-full sm:hidden ' />
       <Image src={'/../bgdesktop.png'} alt='Background Image' width={1000} height={500} className=' absolute  object-cover h-full w-full hidden sm:block ' />
@@ -11,7 +11,7 @@ const IPAddressDetails = () => {
       <div className=' px-4 md:px-44 relative -bottom-10 md:-bottom-16 '>
 
         <div className=' mb-5 w-full '>
-          <p className=' text-3xl text-white font-bold text-center '>IP Address Tracker</p>
+          <p className=' text-xl md:text-3xl text-white font-bold text-center '>IP Address Tracker</p>
         </div>
 
         <div className='  w-full '  >
@@ -22,7 +22,7 @@ const IPAddressDetails = () => {
             </button>
           </div>
 
-          <div className=' bg-white rounded-xl mt-10 text-center md:text-left flex flex-col md:flex-row  p-6 w-full gap-4 md:justify-between shadow-sm '>
+          <div className=' bg-white rounded-xl mt-8 md:mt-12 text-center md:text-left flex flex-col md:flex-row  p-6 w-full gap-4 md:justify-between shadow-sm '>
 
             <div className='  md:p-5 ' >
               <p className=' text-[#aaa] font-bold text-xs md:text-sm '>IP ADDRESS</p>
