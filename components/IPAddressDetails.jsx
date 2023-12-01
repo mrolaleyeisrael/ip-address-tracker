@@ -4,7 +4,8 @@ import { getIPAddress as fetchIPAddress } from '@/lib/api'
 import { fetchUserIP } from '@/lib/api'
 import { useContext } from 'react'
 import { UserLocation } from '@/context/UserLocationContext'
-
+import bgMobile from '../public/static/img/bgmobile.png'
+import bgDesktop from '../public/static/img/bgdesktop.png'
 const IPAddressDetails = () => {
 
   const { searchInput, setSearchInput, ipAddress, handleClick } = useContext(UserLocation)
@@ -14,8 +15,8 @@ const IPAddressDetails = () => {
   return (
     <div className=' relative h-full z-50 md:-mb-40  '>
 
-      <Image src={'/../bgmobile.png'} alt='Background Image' width={1000} height={500} className=' absolute  object-cover h-full w-full sm:hidden ' />
-      <Image src={'/../bgdesktop.png'} alt='Background Image' width={1000} height={500} className=' absolute  object-cover h-full w-full hidden sm:block ' />
+      <Image src={bgMobile} alt='Background Image' width={1000} height={500} className=' absolute  object-cover h-full w-full sm:hidden ' />
+      <Image src={bgDesktop} alt='Background Image' width={1000} height={500} className=' absolute  object-cover h-full w-full hidden sm:block ' />
 
       <div className=' px-4 md:px-44 relative -bottom-10 md:-bottom-16 '>
 
