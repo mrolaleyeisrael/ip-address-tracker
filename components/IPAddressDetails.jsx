@@ -1,7 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
+import { getIPAddress as fetchIPAddress } from '@/lib/api'
+import { fetchUserIP } from '@/lib/api'
+import { useContext } from 'react'
+import { UserLocation } from '@/context/UserLocationContext'
 
 const IPAddressDetails = () => {
+
+  const { searchInput, setSearchInput, ipAddress, handleClick } = useContext(UserLocation)
+
+
+
   return (
     <div className=' relative h-full z-50 md:-mb-40  '>
 
@@ -16,8 +25,8 @@ const IPAddressDetails = () => {
 
         <div className='  w-full '  >
           <div className=' w-full  border rounded-xl flex items-center'>
-            <input type="text" placeholder='Search for any IP address or domain...' className=' py-4 pl-4 rounded-l-xl grow outline-none' />
-            <button className=' bg-black text-white py-4 px-4 rounded-r-xl grow-0 shrink-0 '>
+            <input type="text" placeholder='Search for any IP address or domain...' className=' py-4 pl-4 rounded-l-xl grow outline-none' value={searchInput} onChange={(e) => setSearchInput(e.target.value)} />
+            <button className=' bg-black text-white py-4 px-4 rounded-r-xl grow-0 shrink-0 ' onClick={handleClick} >
               <Image src={'/../icon-arrow.svg'} alt='Search Icon' className=' h-full  ' width={20} height={20} />
             </button>
           </div>
@@ -26,24 +35,24 @@ const IPAddressDetails = () => {
 
             <div className='  md:p-5 ' >
               <p className=' text-[#aaa] font-bold text-xs md:text-sm '>IP ADDRESS</p>
-              <h2 className=' font-bold text-[18px] md:text-2xl'>192.168.83.98</h2>
+              <h2 className=' font-bold text-[18px] md:text-2xl'> {ipAddress.ip} </h2>
             </div>
             <div className=' hidden md:block md:border-r-2 border-r-gray-300 h-20'></div>
             <div className=' md:p-5 ' >
-              <p className=' text-[#aaa] font-bold text-xs md:text-sm '>IP ADDRESS</p>
-              <h2 className=' font-bold text-[18px] md:text-2xl'>Brooklyn, NY 10001</h2>
+              <p className=' text-[#aaa] font-bold text-xs md:text-sm '>LOCATION</p>
+              <h2 className=' font-bold text-[18px] md:text-2xl'>{ipAddress?.location?.city}, {ipAddress?.location?.country} {ipAddress?.location?.postalCode}</h2>
             </div>
             <div className=' hidden md:block md:border-r-2 border-r-gray-300 h-20'></div>
 
             <div className='md:p-5 ' >
-              <p className=' text-[#aaa] font-bold text-xs md:text-sm '>IP ADDRESS</p>
-              <h2 className=' font-bold text-[18px] md:text-2xl'>UTC -5:00</h2>
+              <p className=' text-[#aaa] font-bold text-xs md:text-sm '>TIMEZONE</p>
+              <h2 className=' font-bold text-[18px] md:text-2xl'>UTC {ipAddress?.location?.timezone}</h2>
             </div>
             <div className=' hidden md:block md:border-r-2 border-r-gray-300 h-20'></div>
 
             <div className='  md:p-5 ' >
               <p className=' text-[#aaa] font-bold text-xs md:text-sm '>ISP</p>
-              <h2 className=' font-bold text-[18px] md:text-2xl'>SPaceX Starlink</h2>
+              <h2 className=' font-bold text-[18px] md:text-2xl'>{ipAddress.isp}</h2>
             </div>
 
           </div>
